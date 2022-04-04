@@ -71,6 +71,7 @@ class BlocCartBloc extends Bloc<BlocCartEvent, BlocCartState> {
     yield NotEmptyBlocBasketState(
      cartList: _cartMap.values.toList(),
      totalPrice: _totalCartPrice(),
+     cartMap: _cartMap
     );
   }
 
@@ -79,6 +80,6 @@ class BlocCartBloc extends Bloc<BlocCartEvent, BlocCartState> {
 
     _cartMap.remove(model.id);
 
-    yield NotEmptyBlocBasketState(cartList: _cartMap.values.toList(), totalPrice: _totalCartPrice());
+    yield NotEmptyBlocBasketState(cartList: _cartMap.values.toList(), totalPrice: _totalCartPrice(), cartMap: _cartMap);
   }
 }
