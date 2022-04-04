@@ -163,7 +163,7 @@ class _ItemsState extends State<Items> {
                                       Positioned(
                                           right: 5,
                                           child: IconButton(
-                                            icon: Icon(value.cartMap!.containsKey(listItem[index].id) ? Icons.remove_circle_outline_rounded :  Icons.add,
+                                            icon: Icon(value.cartMap.containsKey(listItem[index].id) ? Icons.remove_circle_outline_rounded :  Icons.add,
                                             ),
                                             onPressed: () {
                                               context.read<BlocCartBloc>().add(

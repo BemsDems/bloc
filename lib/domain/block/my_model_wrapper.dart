@@ -1,4 +1,6 @@
-import 'package:manga_reader/domain/block/my_model/my_model.dart';
+
+
+import 'my_model/my_model.dart';
 
 class MyModelWrapper {
   MyModel myModel;

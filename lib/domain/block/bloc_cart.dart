@@ -1,41 +1,46 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:manga_reader/data/server.dart';
 import 'package:manga_reader/domain/block/my_model/my_model.dart';
 import 'package:manga_reader/domain/block/my_model_wrapper.dart';
 
 part 'bloc_cart.freezed.dart';
 
 @freezed
-abstract class BlocCartEvent with _$BlocCartEvent {
+ class BlocCartEvent with _$BlocCartEvent {
   const BlocCartEvent._();
   const factory BlocCartEvent.addToCart(MyModel model) = AddToCartEvent;
   const factory BlocCartEvent.minusElementCart(MyModel model) =
       MinusElementCartEvent;
   const factory BlocCartEvent.removeFromCart(MyModel model) =
       RemoveFromCartEvent;
+  const factory BlocCartEvent.promocodeUsed(String? promocode) = PromoCodeUsedToCartEvent;
 }
 
 @freezed
-abstract class BlocCartState with _$BlocCartState {
+ class BlocCartState with _$BlocCartState {
   const BlocCartState._();
   const factory BlocCartState.loading() = LoadingBlocBasketState;
   const factory BlocCartState.empty() = EmptyBlocBasketState;
   const factory BlocCartState.notEmpty(
       {List<MyModelWrapper>? cartList,
       double? totalPrice,
-      Map<int, MyModelWrapper>? cartMap}) = NotEmptyBlocBasketState;
+     @Default({}) Map<int, MyModelWrapper> cartMap}) = NotEmptyBlocBasketState;
   const factory BlocCartState.error() = ErrorBlocBasketState;
 }
 
 class BlocCartBloc extends Bloc<BlocCartEvent, BlocCartState> {
   BlocCartBloc() : super(const LoadingBlocBasketState());
   final Map<int, MyModelWrapper> _cartMap = {};
+  double? totalPrice;
+  bool promocodUsed = false;
   double _totalCartPrice() {
     List<MyModelWrapper> myModelWrapperList = _cartMap.values.toList();
     double _totalPrice = 0;
     for (var element in myModelWrapperList) {
       _totalPrice = _totalPrice.toDouble() + element.totalPrice;
     }
+    
     return _totalPrice;
   }
 
@@ -45,6 +50,7 @@ class BlocCartBloc extends Bloc<BlocCartEvent, BlocCartState> {
         addToCart: _addToCart,
         minusElementCart: _minusElementCart,
         removeFromCart: _removeFromCart,
+        promocodeUsed: _promocodeUsed,
       );
 
   Stream<BlocCartState> _addToCart(MyModel model) async* {
@@ -55,6 +61,7 @@ class BlocCartBloc extends Bloc<BlocCartEvent, BlocCartState> {
           myModel: model, quantity: _cartMap[model.id]!.quantity + 1);
     } else {
       _cartMap[model.id] = MyModelWrapper(myModel: model, quantity: 1);
+    
     }
 
     yield NotEmptyBlocBasketState(cartList: _cartMap.values.toList(), totalPrice: _totalCartPrice(), cartMap: _cartMap);
@@ -71,6 +78,7 @@ class BlocCartBloc extends Bloc<BlocCartEvent, BlocCartState> {
     yield NotEmptyBlocBasketState(
      cartList: _cartMap.values.toList(),
      totalPrice: _totalCartPrice(),
+     cartMap: _cartMap
     );
   }
 
@@ -79,6 +87,32 @@ class BlocCartBloc extends Bloc<BlocCartEvent, BlocCartState> {
 
     _cartMap.remove(model.id);
 
-    yield NotEmptyBlocBasketState(cartList: _cartMap.values.toList(), totalPrice: _totalCartPrice());
+    yield NotEmptyBlocBasketState(cartList: _cartMap.values.toList(), totalPrice: _totalCartPrice(), cartMap: _cartMap);
+  }
+  Stream<BlocCartState> _promocodeUsed (String? promocode) async* {
+    yield LoadingBlocBasketState();
+     List<Promocod>? promocodes = Server().getPromocods();
+     double? promocodePercent;
+     for (var i = 0; i < promocodes!.length; i++) {
+       
+       if (promocode == promocodes[i].id) {
+         promocodUsed = true;
+          promocodePercent = promocodes[i].saleProcent;
+          break;
+         
+       } else {
+         promocodUsed = false;
+       }
+       
+     }
+    
+    yield NotEmptyBlocBasketState(
+      cartList: _cartMap.values.toList(),
+       totalPrice: 
+       promocodUsed ? promocodePercent! * _totalCartPrice(): 
+       _totalCartPrice(),
+       cartMap: _cartMap
+    );
+
   }
 }

@@ -35,6 +35,12 @@ class _$BlocCartEventTearOff {
       model,
     );
   }
+
+  PromoCodeUsedToCartEvent promocodeUsed(String? promocode) {
+    return PromoCodeUsedToCartEvent(
+      promocode,
+    );
+  }
 }
 
 /// @nodoc
@@ -42,13 +48,12 @@ const $BlocCartEvent = _$BlocCartEventTearOff();
 
 /// @nodoc
 mixin _$BlocCartEvent {
-  MyModel get model => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(MyModel model) addToCart,
     required TResult Function(MyModel model) minusElementCart,
     required TResult Function(MyModel model) removeFromCart,
+    required TResult Function(String? promocode) promocodeUsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +61,7 @@ mixin _$BlocCartEvent {
     TResult Function(MyModel model)? addToCart,
     TResult Function(MyModel model)? minusElementCart,
     TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +69,7 @@ mixin _$BlocCartEvent {
     TResult Function(MyModel model)? addToCart,
     TResult Function(MyModel model)? minusElementCart,
     TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,6 +78,7 @@ mixin _$BlocCartEvent {
     required TResult Function(AddToCartEvent value) addToCart,
     required TResult Function(MinusElementCartEvent value) minusElementCart,
     required TResult Function(RemoveFromCartEvent value) removeFromCart,
+    required TResult Function(PromoCodeUsedToCartEvent value) promocodeUsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,6 +86,7 @@ mixin _$BlocCartEvent {
     TResult Function(AddToCartEvent value)? addToCart,
     TResult Function(MinusElementCartEvent value)? minusElementCart,
     TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,12 +94,9 @@ mixin _$BlocCartEvent {
     TResult Function(AddToCartEvent value)? addToCart,
     TResult Function(MinusElementCartEvent value)? minusElementCart,
     TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $BlocCartEventCopyWith<BlocCartEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -99,7 +105,6 @@ abstract class $BlocCartEventCopyWith<$Res> {
   factory $BlocCartEventCopyWith(
           BlocCartEvent value, $Res Function(BlocCartEvent) then) =
       _$BlocCartEventCopyWithImpl<$Res>;
-  $Res call({MyModel model});
 }
 
 /// @nodoc
@@ -110,27 +115,13 @@ class _$BlocCartEventCopyWithImpl<$Res>
   final BlocCartEvent _value;
   // ignore: unused_field
   final $Res Function(BlocCartEvent) _then;
-
-  @override
-  $Res call({
-    Object? model = freezed,
-  }) {
-    return _then(_value.copyWith(
-      model: model == freezed
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as MyModel,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $AddToCartEventCopyWith<$Res>
-    implements $BlocCartEventCopyWith<$Res> {
+abstract class $AddToCartEventCopyWith<$Res> {
   factory $AddToCartEventCopyWith(
           AddToCartEvent value, $Res Function(AddToCartEvent) then) =
       _$AddToCartEventCopyWithImpl<$Res>;
-  @override
   $Res call({MyModel model});
 }
 
@@ -194,6 +185,7 @@ class _$AddToCartEvent extends AddToCartEvent {
     required TResult Function(MyModel model) addToCart,
     required TResult Function(MyModel model) minusElementCart,
     required TResult Function(MyModel model) removeFromCart,
+    required TResult Function(String? promocode) promocodeUsed,
   }) {
     return addToCart(model);
   }
@@ -204,6 +196,7 @@ class _$AddToCartEvent extends AddToCartEvent {
     TResult Function(MyModel model)? addToCart,
     TResult Function(MyModel model)? minusElementCart,
     TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
   }) {
     return addToCart?.call(model);
   }
@@ -214,6 +207,7 @@ class _$AddToCartEvent extends AddToCartEvent {
     TResult Function(MyModel model)? addToCart,
     TResult Function(MyModel model)? minusElementCart,
     TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -228,6 +222,7 @@ class _$AddToCartEvent extends AddToCartEvent {
     required TResult Function(AddToCartEvent value) addToCart,
     required TResult Function(MinusElementCartEvent value) minusElementCart,
     required TResult Function(RemoveFromCartEvent value) removeFromCart,
+    required TResult Function(PromoCodeUsedToCartEvent value) promocodeUsed,
   }) {
     return addToCart(this);
   }
@@ -238,6 +233,7 @@ class _$AddToCartEvent extends AddToCartEvent {
     TResult Function(AddToCartEvent value)? addToCart,
     TResult Function(MinusElementCartEvent value)? minusElementCart,
     TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
   }) {
     return addToCart?.call(this);
   }
@@ -248,6 +244,7 @@ class _$AddToCartEvent extends AddToCartEvent {
     TResult Function(AddToCartEvent value)? addToCart,
     TResult Function(MinusElementCartEvent value)? minusElementCart,
     TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -261,21 +258,17 @@ abstract class AddToCartEvent extends BlocCartEvent {
   const factory AddToCartEvent(MyModel model) = _$AddToCartEvent;
   const AddToCartEvent._() : super._();
 
-  @override
   MyModel get model;
-  @override
   @JsonKey(ignore: true)
   $AddToCartEventCopyWith<AddToCartEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MinusElementCartEventCopyWith<$Res>
-    implements $BlocCartEventCopyWith<$Res> {
+abstract class $MinusElementCartEventCopyWith<$Res> {
   factory $MinusElementCartEventCopyWith(MinusElementCartEvent value,
           $Res Function(MinusElementCartEvent) then) =
       _$MinusElementCartEventCopyWithImpl<$Res>;
-  @override
   $Res call({MyModel model});
 }
 
@@ -340,6 +333,7 @@ class _$MinusElementCartEvent extends MinusElementCartEvent {
     required TResult Function(MyModel model) addToCart,
     required TResult Function(MyModel model) minusElementCart,
     required TResult Function(MyModel model) removeFromCart,
+    required TResult Function(String? promocode) promocodeUsed,
   }) {
     return minusElementCart(model);
   }
@@ -350,6 +344,7 @@ class _$MinusElementCartEvent extends MinusElementCartEvent {
     TResult Function(MyModel model)? addToCart,
     TResult Function(MyModel model)? minusElementCart,
     TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
   }) {
     return minusElementCart?.call(model);
   }
@@ -360,6 +355,7 @@ class _$MinusElementCartEvent extends MinusElementCartEvent {
     TResult Function(MyModel model)? addToCart,
     TResult Function(MyModel model)? minusElementCart,
     TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
     required TResult orElse(),
   }) {
     if (minusElementCart != null) {
@@ -374,6 +370,7 @@ class _$MinusElementCartEvent extends MinusElementCartEvent {
     required TResult Function(AddToCartEvent value) addToCart,
     required TResult Function(MinusElementCartEvent value) minusElementCart,
     required TResult Function(RemoveFromCartEvent value) removeFromCart,
+    required TResult Function(PromoCodeUsedToCartEvent value) promocodeUsed,
   }) {
     return minusElementCart(this);
   }
@@ -384,6 +381,7 @@ class _$MinusElementCartEvent extends MinusElementCartEvent {
     TResult Function(AddToCartEvent value)? addToCart,
     TResult Function(MinusElementCartEvent value)? minusElementCart,
     TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
   }) {
     return minusElementCart?.call(this);
   }
@@ -394,6 +392,7 @@ class _$MinusElementCartEvent extends MinusElementCartEvent {
     TResult Function(AddToCartEvent value)? addToCart,
     TResult Function(MinusElementCartEvent value)? minusElementCart,
     TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
     required TResult orElse(),
   }) {
     if (minusElementCart != null) {
@@ -407,21 +406,17 @@ abstract class MinusElementCartEvent extends BlocCartEvent {
   const factory MinusElementCartEvent(MyModel model) = _$MinusElementCartEvent;
   const MinusElementCartEvent._() : super._();
 
-  @override
   MyModel get model;
-  @override
   @JsonKey(ignore: true)
   $MinusElementCartEventCopyWith<MinusElementCartEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RemoveFromCartEventCopyWith<$Res>
-    implements $BlocCartEventCopyWith<$Res> {
+abstract class $RemoveFromCartEventCopyWith<$Res> {
   factory $RemoveFromCartEventCopyWith(
           RemoveFromCartEvent value, $Res Function(RemoveFromCartEvent) then) =
       _$RemoveFromCartEventCopyWithImpl<$Res>;
-  @override
   $Res call({MyModel model});
 }
 
@@ -485,6 +480,7 @@ class _$RemoveFromCartEvent extends RemoveFromCartEvent {
     required TResult Function(MyModel model) addToCart,
     required TResult Function(MyModel model) minusElementCart,
     required TResult Function(MyModel model) removeFromCart,
+    required TResult Function(String? promocode) promocodeUsed,
   }) {
     return removeFromCart(model);
   }
@@ -495,6 +491,7 @@ class _$RemoveFromCartEvent extends RemoveFromCartEvent {
     TResult Function(MyModel model)? addToCart,
     TResult Function(MyModel model)? minusElementCart,
     TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
   }) {
     return removeFromCart?.call(model);
   }
@@ -505,6 +502,7 @@ class _$RemoveFromCartEvent extends RemoveFromCartEvent {
     TResult Function(MyModel model)? addToCart,
     TResult Function(MyModel model)? minusElementCart,
     TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
     required TResult orElse(),
   }) {
     if (removeFromCart != null) {
@@ -519,6 +517,7 @@ class _$RemoveFromCartEvent extends RemoveFromCartEvent {
     required TResult Function(AddToCartEvent value) addToCart,
     required TResult Function(MinusElementCartEvent value) minusElementCart,
     required TResult Function(RemoveFromCartEvent value) removeFromCart,
+    required TResult Function(PromoCodeUsedToCartEvent value) promocodeUsed,
   }) {
     return removeFromCart(this);
   }
@@ -529,6 +528,7 @@ class _$RemoveFromCartEvent extends RemoveFromCartEvent {
     TResult Function(AddToCartEvent value)? addToCart,
     TResult Function(MinusElementCartEvent value)? minusElementCart,
     TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
   }) {
     return removeFromCart?.call(this);
   }
@@ -539,6 +539,7 @@ class _$RemoveFromCartEvent extends RemoveFromCartEvent {
     TResult Function(AddToCartEvent value)? addToCart,
     TResult Function(MinusElementCartEvent value)? minusElementCart,
     TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
     required TResult orElse(),
   }) {
     if (removeFromCart != null) {
@@ -552,11 +553,159 @@ abstract class RemoveFromCartEvent extends BlocCartEvent {
   const factory RemoveFromCartEvent(MyModel model) = _$RemoveFromCartEvent;
   const RemoveFromCartEvent._() : super._();
 
-  @override
   MyModel get model;
-  @override
   @JsonKey(ignore: true)
   $RemoveFromCartEventCopyWith<RemoveFromCartEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PromoCodeUsedToCartEventCopyWith<$Res> {
+  factory $PromoCodeUsedToCartEventCopyWith(PromoCodeUsedToCartEvent value,
+          $Res Function(PromoCodeUsedToCartEvent) then) =
+      _$PromoCodeUsedToCartEventCopyWithImpl<$Res>;
+  $Res call({String? promocode});
+}
+
+/// @nodoc
+class _$PromoCodeUsedToCartEventCopyWithImpl<$Res>
+    extends _$BlocCartEventCopyWithImpl<$Res>
+    implements $PromoCodeUsedToCartEventCopyWith<$Res> {
+  _$PromoCodeUsedToCartEventCopyWithImpl(PromoCodeUsedToCartEvent _value,
+      $Res Function(PromoCodeUsedToCartEvent) _then)
+      : super(_value, (v) => _then(v as PromoCodeUsedToCartEvent));
+
+  @override
+  PromoCodeUsedToCartEvent get _value =>
+      super._value as PromoCodeUsedToCartEvent;
+
+  @override
+  $Res call({
+    Object? promocode = freezed,
+  }) {
+    return _then(PromoCodeUsedToCartEvent(
+      promocode == freezed
+          ? _value.promocode
+          : promocode // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PromoCodeUsedToCartEvent extends PromoCodeUsedToCartEvent {
+  const _$PromoCodeUsedToCartEvent(this.promocode) : super._();
+
+  @override
+  final String? promocode;
+
+  @override
+  String toString() {
+    return 'BlocCartEvent.promocodeUsed(promocode: $promocode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PromoCodeUsedToCartEvent &&
+            const DeepCollectionEquality().equals(other.promocode, promocode));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(promocode));
+
+  @JsonKey(ignore: true)
+  @override
+  $PromoCodeUsedToCartEventCopyWith<PromoCodeUsedToCartEvent> get copyWith =>
+      _$PromoCodeUsedToCartEventCopyWithImpl<PromoCodeUsedToCartEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(MyModel model) addToCart,
+    required TResult Function(MyModel model) minusElementCart,
+    required TResult Function(MyModel model) removeFromCart,
+    required TResult Function(String? promocode) promocodeUsed,
+  }) {
+    return promocodeUsed(promocode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(MyModel model)? addToCart,
+    TResult Function(MyModel model)? minusElementCart,
+    TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
+  }) {
+    return promocodeUsed?.call(promocode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(MyModel model)? addToCart,
+    TResult Function(MyModel model)? minusElementCart,
+    TResult Function(MyModel model)? removeFromCart,
+    TResult Function(String? promocode)? promocodeUsed,
+    required TResult orElse(),
+  }) {
+    if (promocodeUsed != null) {
+      return promocodeUsed(promocode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AddToCartEvent value) addToCart,
+    required TResult Function(MinusElementCartEvent value) minusElementCart,
+    required TResult Function(RemoveFromCartEvent value) removeFromCart,
+    required TResult Function(PromoCodeUsedToCartEvent value) promocodeUsed,
+  }) {
+    return promocodeUsed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(AddToCartEvent value)? addToCart,
+    TResult Function(MinusElementCartEvent value)? minusElementCart,
+    TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
+  }) {
+    return promocodeUsed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AddToCartEvent value)? addToCart,
+    TResult Function(MinusElementCartEvent value)? minusElementCart,
+    TResult Function(RemoveFromCartEvent value)? removeFromCart,
+    TResult Function(PromoCodeUsedToCartEvent value)? promocodeUsed,
+    required TResult orElse(),
+  }) {
+    if (promocodeUsed != null) {
+      return promocodeUsed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PromoCodeUsedToCartEvent extends BlocCartEvent {
+  const factory PromoCodeUsedToCartEvent(String? promocode) =
+      _$PromoCodeUsedToCartEvent;
+  const PromoCodeUsedToCartEvent._() : super._();
+
+  String? get promocode;
+  @JsonKey(ignore: true)
+  $PromoCodeUsedToCartEventCopyWith<PromoCodeUsedToCartEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -575,7 +724,7 @@ class _$BlocCartStateTearOff {
   NotEmptyBlocBasketState notEmpty(
       {List<MyModelWrapper>? cartList,
       double? totalPrice,
-      Map<int, MyModelWrapper>? cartMap}) {
+      Map<int, MyModelWrapper> cartMap = const {}}) {
     return NotEmptyBlocBasketState(
       cartList: cartList,
       totalPrice: totalPrice,
@@ -598,7 +747,7 @@ mixin _$BlocCartState {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<MyModelWrapper>? cartList,
-            double? totalPrice, Map<int, MyModelWrapper>? cartMap)
+            double? totalPrice, Map<int, MyModelWrapper> cartMap)
         notEmpty,
     required TResult Function() error,
   }) =>
@@ -608,7 +757,7 @@ mixin _$BlocCartState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
   }) =>
@@ -618,7 +767,7 @@ mixin _$BlocCartState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
     required TResult orElse(),
@@ -712,7 +861,7 @@ class _$LoadingBlocBasketState extends LoadingBlocBasketState {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<MyModelWrapper>? cartList,
-            double? totalPrice, Map<int, MyModelWrapper>? cartMap)
+            double? totalPrice, Map<int, MyModelWrapper> cartMap)
         notEmpty,
     required TResult Function() error,
   }) {
@@ -725,7 +874,7 @@ class _$LoadingBlocBasketState extends LoadingBlocBasketState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
   }) {
@@ -738,7 +887,7 @@ class _$LoadingBlocBasketState extends LoadingBlocBasketState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
     required TResult orElse(),
@@ -836,7 +985,7 @@ class _$EmptyBlocBasketState extends EmptyBlocBasketState {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<MyModelWrapper>? cartList,
-            double? totalPrice, Map<int, MyModelWrapper>? cartMap)
+            double? totalPrice, Map<int, MyModelWrapper> cartMap)
         notEmpty,
     required TResult Function() error,
   }) {
@@ -849,7 +998,7 @@ class _$EmptyBlocBasketState extends EmptyBlocBasketState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
   }) {
@@ -862,7 +1011,7 @@ class _$EmptyBlocBasketState extends EmptyBlocBasketState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
     required TResult orElse(),
@@ -924,7 +1073,7 @@ abstract class $NotEmptyBlocBasketStateCopyWith<$Res> {
   $Res call(
       {List<MyModelWrapper>? cartList,
       double? totalPrice,
-      Map<int, MyModelWrapper>? cartMap});
+      Map<int, MyModelWrapper> cartMap});
 }
 
 /// @nodoc
@@ -956,7 +1105,7 @@ class _$NotEmptyBlocBasketStateCopyWithImpl<$Res>
       cartMap: cartMap == freezed
           ? _value.cartMap
           : cartMap // ignore: cast_nullable_to_non_nullable
-              as Map<int, MyModelWrapper>?,
+              as Map<int, MyModelWrapper>,
     ));
   }
 }
@@ -965,15 +1114,16 @@ class _$NotEmptyBlocBasketStateCopyWithImpl<$Res>
 
 class _$NotEmptyBlocBasketState extends NotEmptyBlocBasketState {
   const _$NotEmptyBlocBasketState(
-      {this.cartList, this.totalPrice, this.cartMap})
+      {this.cartList, this.totalPrice, this.cartMap = const {}})
       : super._();
 
   @override
   final List<MyModelWrapper>? cartList;
   @override
   final double? totalPrice;
+  @JsonKey()
   @override
-  final Map<int, MyModelWrapper>? cartMap;
+  final Map<int, MyModelWrapper> cartMap;
 
   @override
   String toString() {
@@ -1010,7 +1160,7 @@ class _$NotEmptyBlocBasketState extends NotEmptyBlocBasketState {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<MyModelWrapper>? cartList,
-            double? totalPrice, Map<int, MyModelWrapper>? cartMap)
+            double? totalPrice, Map<int, MyModelWrapper> cartMap)
         notEmpty,
     required TResult Function() error,
   }) {
@@ -1023,7 +1173,7 @@ class _$NotEmptyBlocBasketState extends NotEmptyBlocBasketState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
   }) {
@@ -1036,7 +1186,7 @@ class _$NotEmptyBlocBasketState extends NotEmptyBlocBasketState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
     required TResult orElse(),
@@ -1089,12 +1239,12 @@ abstract class NotEmptyBlocBasketState extends BlocCartState {
   const factory NotEmptyBlocBasketState(
       {List<MyModelWrapper>? cartList,
       double? totalPrice,
-      Map<int, MyModelWrapper>? cartMap}) = _$NotEmptyBlocBasketState;
+      Map<int, MyModelWrapper> cartMap}) = _$NotEmptyBlocBasketState;
   const NotEmptyBlocBasketState._() : super._();
 
   List<MyModelWrapper>? get cartList;
   double? get totalPrice;
-  Map<int, MyModelWrapper>? get cartMap;
+  Map<int, MyModelWrapper> get cartMap;
   @JsonKey(ignore: true)
   $NotEmptyBlocBasketStateCopyWith<NotEmptyBlocBasketState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1144,7 +1294,7 @@ class _$ErrorBlocBasketState extends ErrorBlocBasketState {
     required TResult Function() loading,
     required TResult Function() empty,
     required TResult Function(List<MyModelWrapper>? cartList,
-            double? totalPrice, Map<int, MyModelWrapper>? cartMap)
+            double? totalPrice, Map<int, MyModelWrapper> cartMap)
         notEmpty,
     required TResult Function() error,
   }) {
@@ -1157,7 +1307,7 @@ class _$ErrorBlocBasketState extends ErrorBlocBasketState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
   }) {
@@ -1170,7 +1320,7 @@ class _$ErrorBlocBasketState extends ErrorBlocBasketState {
     TResult Function()? loading,
     TResult Function()? empty,
     TResult Function(List<MyModelWrapper>? cartList, double? totalPrice,
-            Map<int, MyModelWrapper>? cartMap)?
+            Map<int, MyModelWrapper> cartMap)?
         notEmpty,
     TResult Function()? error,
     required TResult orElse(),

@@ -12,6 +12,7 @@ class BasketScreen extends StatefulWidget {
 class _BasketScreenState extends State<BasketScreen> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController? promocodeContriller = TextEditingController();
     return BlocBuilder<BlocCartBloc, BlocCartState>(
       builder: (context, state) {
         return state.when(
@@ -110,6 +111,11 @@ class _BasketScreenState extends State<BasketScreen> {
                             );
                           }),
                     ),
+                    TextField(controller: promocodeContriller, onSubmitted: (value){
+                      context.read<BlocCartBloc>().add(BlocCartEvent.promocodeUsed(value));
+                    },
+                    onChanged: (value){
+                      context.read<BlocCartBloc>().add(BlocCartEvent.promocodeUsed(value));}),
                     Container(
                       alignment: Alignment.bottomCenter,
                       padding: const EdgeInsets.all(16.0),
