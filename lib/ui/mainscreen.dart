@@ -120,7 +120,8 @@ class _ItemsState extends State<Items> {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: listItem[index].price.toString(),
+                                        text:
+                                            listItem[index].price.toString(),
                                         style: const TextStyle(
                                           color: Colors.white,
                                         ),
@@ -144,6 +145,7 @@ class _ItemsState extends State<Items> {
                             ),
                           ),
                           BlocBuilder<BlocCartBloc, BlocCartState>(
+                            
                             builder: (context, state) {
                               return state.map(
                                   loading: (f) => Positioned(
@@ -159,18 +161,68 @@ class _ItemsState extends State<Items> {
                                         },
                                       )),
                                   empty: (f) => SizedBox(),
-                                  notEmpty: (value) =>
-                                      Positioned(
-                                          right: 5,
-                                          child: IconButton(
-                                            icon: Icon(value.cartMap.containsKey(listItem[index].id) ? Icons.remove_circle_outline_rounded :  Icons.add,
+                                  notEmpty: (value) {
+                                   
+                                    return Positioned(
+                                      right: 5,
+                                      child: value.cartMap
+                                              .containsKey(listItem[index].id)
+                                          ?
+                                           
+                                          Row(
+                                              children: [
+                                                IconButton(
+                                                  icon: Icon(
+                                                    Icons.remove,
+                                                  ),
+                                                  onPressed: () {
+                                                    context
+                                                        .read<BlocCartBloc>()
+                                                        .add(BlocCartEvent
+                                                            .minusElementCart(
+                                                          listItem[index],
+                                                        ));
+                                                  },
+                                                ),
+                                                Container(
+                                                  width: 20,
+                                                  height: 20,
+                                                  child: Text(
+                                                      '${value.cartMap[listItem[index].id]?.quantity}'),
+                                                ),
+                                                IconButton(
+                                                  icon: Icon(
+                                                    Icons.add,
+                                                  ),
+                                                  onPressed: () {
+                                                    context
+                                                        .read<BlocCartBloc>()
+                                                        .add(BlocCartEvent
+                                                            .addToCart(
+                                                          listItem[index],
+                                                        ));
+                                                  },
+                                                ),
+                                              ],
+                                            )
+                                        
+
+                                          : IconButton(
+                                              icon: Icon(
+                                                Icons.add,
+                                              ),
+                                              onPressed: () {
+                                                context
+                                                    .read<BlocCartBloc>()
+                                                    .add(
+                                                      BlocCartEvent.addToCart(
+                                                        listItem[index],
+                                                      ),
+                                                    );
+                                              },
                                             ),
-                                            onPressed: () {
-                                              context.read<BlocCartBloc>().add(
-                                                  BlocCartEvent.addToCart(
-                                                      listItem[index],),);
-                                            },
-                                          )),
+                                    );
+                                  },
                                   error: (f) => SizedBox());
                             },
                           )
