@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_reader/domain/block/bloc_cart.dart';
+import 'package:manga_reader/domain/block/bloc_for_user.dart';
+import 'package:manga_reader/ui/authorization_screen.dart';
 import 'package:manga_reader/ui/cart_screen.dart';
+import 'package:manga_reader/ui/main_screen.dart';
 
-import 'package:manga_reader/ui/mainscreen.dart';
+
 
 void main() {
-  runApp(BlocProvider(
-    create: (context) => BlocCartBloc(),
-    child: const MaterialApp(
-      title: "App",
-      home: MyApp(),
+  runApp(
+    MultiBlocProvider(providers: [
+    BlocProvider(
+      create: (context) => UserBlocBloc(),
+     
     ),
-  ));
+    BlocProvider(
+    create: (context) => BlocCartBloc()),
+    ], child: 
+    MaterialApp(
+      title: "App",
+      home: Authorization(),
+    ),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {

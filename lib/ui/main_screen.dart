@@ -145,7 +145,6 @@ class _ItemsState extends State<Items> {
                             ),
                           ),
                           BlocBuilder<BlocCartBloc, BlocCartState>(
-                            
                             builder: (context, state) {
                               return state.map(
                                   loading: (f) => Positioned(

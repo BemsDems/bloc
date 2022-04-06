@@ -89,6 +89,7 @@ class BlocCartBloc extends Bloc<BlocCartEvent, BlocCartState> {
 
     yield NotEmptyBlocBasketState(cartList: _cartMap.values.toList(), totalPrice: _totalCartPrice(), cartMap: _cartMap);
   }
+  
   Stream<BlocCartState> _promocodeUsed (String? promocode) async* {
     yield LoadingBlocBasketState();
      List<Promocod>? promocodes = Server().getPromocods();
