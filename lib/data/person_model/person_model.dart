@@ -14,7 +14,6 @@ class PersonModel with _$PersonModel {
 
 @Freezed()
 class Person with _$Person {
-  
   factory Person({
     required dynamic id,
     @JsonKey(name: 'first_name')
