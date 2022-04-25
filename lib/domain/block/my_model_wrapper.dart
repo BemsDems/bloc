@@ -1,5 +1,3 @@
-
-
 import 'my_model/my_model.dart';
 
 class MyModelWrapper {
@@ -11,5 +9,4 @@ class MyModelWrapper {
   }
 
   MyModelWrapper({required this.myModel, required this.quantity});
-
 }

@@ -39,10 +39,14 @@ dependencies:
   flutter_bloc: ^7.2.0
   dio: ^4.0.4
   liquid_swipe: ^2.1.1
+
+  permission_handler: ^8.3.0
+  yandex_mapkit: ^2.0.3
   provider: ^6.0.2
   shared_preferences: ^2.0.13
   
   
+
 
 
 dev_dependencies:
@@ -64,7 +68,14 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  assets:
+    - lib/assets/user.png
+    - lib/assets/cluster.png
+    - lib/assets/place.png
+    - lib/assets/arrow.png
+    - lib/assets/route_start.png
+    - lib/assets/route_stop_by.png
+    - lib/assets/route_end.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
