@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_reader/domain/block/bloc_cart.dart';
 import 'package:manga_reader/domain/block/bloc_for_user.dart';
+import 'package:manga_reader/domain/block/bloc_map.dart';
 import 'package:manga_reader/ui/authorization_screen.dart';
 import 'package:manga_reader/ui/cart_screen.dart';
 import 'package:manga_reader/ui/main_screen.dart';
+import 'package:manga_reader/ui/test1.dart';
 
 
 
@@ -17,6 +19,8 @@ void main() {
     ),
     BlocProvider(
     create: (context) => BlocCartBloc()),
+    BlocProvider(
+    create: (context) => BlocMapBloc()),
     ], child: 
     MaterialApp(
       title: "App",
